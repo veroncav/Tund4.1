@@ -62,3 +62,6 @@ for i in range(questions):
 
 print(f"Вы решили правильно {score} из {questions} примеров.")
 
+
+
+
