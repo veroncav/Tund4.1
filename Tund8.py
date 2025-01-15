@@ -5,58 +5,30 @@
 
 # Список продуктов в магазине
 products = ["Хлеб", "Молоко", "Яблоки", "Масло", "Сыр"]
+cart = []  # Корзина покупок
 
-# Функция для отображения меню
-def display_menu():
+while True:
+    # Меню
     print("\n1. Посмотреть продукты")
     print("2. Добавить в корзину")
     print("3. Удалить из корзины")
     print("4. Показать корзину")
-    print("5. Выйти")
+    print("5. Сортировать корзину")
+    print("6. Выйти")
 
-# Основная функция программы
-def shopping():
-    cart = []  # Корзина покупок
-    while True:
-        display_menu()  # Показываем меню
-        choice = input("Выберите действие: ")
+    choice = input("Выберите действие: ")
 
-        if choice == "1":
-            print("\nДоступные товары:")
-            for i, product in enumerate(products, 1):
-                print(f"{i}. {product}")
+    if choice == "1":  # Посмотреть продукты
+        print("\nДоступные товары:")
+        for i, product in enumerate(products, 1):
+            print(f"{i}. {product}")
 
-        elif choice == "2":
-            product = input("\nВведите название товара для добавления: ")
-            if product in products:
-                cart.append(product)  # Добавление в корзину
-                print(f"{product} добавлен в корзину.")
-            else:
-                print("Товар не найден.")
+    elif choice == "2":  # Добавить в корзину
+        product = input("\nВведите название товара для добавления: ")
+        if product in products:
+            cart.append(product)  # Добавление в корзину
+          
 
-        elif choice == "3":
-            print("\nТовары в корзине:")
-            for i, item in enumerate(cart, 1):
-                print(f"{i}. {item}")
-            try:
-                idx = int(input("\nВведите номер товара для удаления: ")) - 1
-                removed_item = cart.pop(idx)  # Удаление из корзины
-                print(f"{removed_item} удален из корзины.")
-            except (ValueError, IndexError):
-                print("Неверный номер товара.")
-
-        elif choice == "4":
-            print("\nТовары в корзине:")
-            for item in cart:
-                print(f"- {item}")
-
-      
-        elif choice == "5":
-            print("\nСпасибо за покупку!")
-            break
-
-        else:
-            print("Неверный выбор. Попробуйте снова.")
 
 # Функции и методы строк 10 примеров с комментариями
 

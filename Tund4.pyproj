@@ -21,6 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Listid.py" />
     <Compile Include="Tund4.py" />
     <Compile Include="..\..\..\Downloads\tund6.py">
       <Link>tund6.py</Link>
