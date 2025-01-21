@@ -69,7 +69,6 @@ arvud.sort()
 print("\nПравильные коды:")
 for code in ikoodid:
     print(f"{code[0]}: {code[1]}, дата рождения: {code[2]}")
-
 print("\nНеправильные коды:")
 for code in arvud:
     print(code)
