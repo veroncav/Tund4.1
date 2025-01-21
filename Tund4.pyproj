@@ -27,6 +27,7 @@
       <Link>tund6.py</Link>
     </Compile>
     <Compile Include="Tund8.py" />
+    <Compile Include="isikukood.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
