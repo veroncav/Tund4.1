@@ -26,8 +26,10 @@
     <Compile Include="..\..\..\Downloads\tund6.py">
       <Link>tund6.py</Link>
     </Compile>
+    <Compile Include="tund7modul.py" />
     <Compile Include="Tund8.py" />
     <Compile Include="isikukood.py" />
+    <Compile Include="tund7def.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
