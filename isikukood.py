@@ -183,8 +183,8 @@ def process_isikukood(isikukood):
 
 
 def main():
-    ikoodid = []  # Список правильных кодов
-    arvud = []  # Список неправильных кодов
+    ikoodid = []  
+    arvud = []  
 
     while True:
         isikukood = input("Введите личный код (или 'стоп' для завершения): ")
@@ -197,11 +197,9 @@ def main():
         else:
             arvud.append(isikukood)
 
-    # Сортировка списков
     ikoodid.sort(key=lambda x: (x[1], x[0]))
     arvud.sort()
 
-    # Вывод результатов
     print("\nПравильные коды:")
     for code in ikoodid:
         print(f"{code[0]}: {code[1]}, дата рождения: {code[2]}, место рождения: {code[3]}")
@@ -209,7 +207,6 @@ def main():
     print("\nНеправильные коды:")
     for code in arvud:
         print(code)
-
 
 if __name__ == "__main__":
     main()
