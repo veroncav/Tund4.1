@@ -33,6 +33,7 @@
     <Compile Include="isikukood.py" />
     <Compile Include="tund7def.py" />
     <Compile Include="класс1.py" />
+    <Compile Include="класс2.py" />
     <Compile Include="модуль1.py" />
   </ItemGroup>
   <ItemGroup>
