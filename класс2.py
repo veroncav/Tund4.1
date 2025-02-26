@@ -1,7 +1,17 @@
 ﻿import json
 
 company_name = input("Sisesta oma ettevõtte nimi: ")
-contact_email = input("Sisesta oma isiklikk email address: ")
+
+
+while True:
+        contact_email = input("Sisesta oma isiklikk email address: ")
+        if "@" in contact_email:
+            pass
+        else:
+            print("NOO")
+
+
+
 data_collection_type = input("Millised andmed salvestame: ")
 data_usege = input("Kuidas andmed kasutatakse: ")
 data_storage_limit = input("Kui kaua andem salvestatakse: ")
