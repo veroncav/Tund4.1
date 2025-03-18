@@ -1,6 +1,9 @@
 import re
 import tkinter as tk
 from tkinter import messagebox
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 def detect_language(name):
     """Определяет язык имени: русский или английский"""
@@ -46,25 +49,55 @@ def get_name_number(name):
 def get_number_description(number):
     """Описание значений чисел"""
     descriptions = {
-        1: """1 — Лидер, амбициозность, уверенность.""",
-        2: """2 — Дипломатия, гармония, чуткость.""",
-        3: """3 — Творчество, оптимизм, общительность.""",
-        4: """4 — Практичность, стабильность, упорство.""",
-        5: """5 — Свобода, приключения, энергия.""",
-        6: """6 — Ответственность, любовь, забота.""",
-        7: """7 — Аналитика, интеллект, духовность.""",
-        8: """8 — Власть, успех, материальный достаток.""",
-        9: """9 — Доброта, мудрость, альтруизм."""
-
-
+        1: "1 — Лидер, амбициозность, уверенность.",
+        2: "2 — Дипломатия, гармония, чуткость.",
+        3: "3 — Творчество, оптимизм, общительность.",
+        4: "4 — Практичность, стабильность, упорство.",
+        5: "5 — Свобода, приключения, энергия.",
+        6: "6 — Ответственность, любовь, забота.",
+        7: "7 — Аналитика, интеллект, духовность.",
+        8: "8 — Власть, успех, материальный достаток.",
+        9: "9 — Доброта, мудрость, альтруизм."
     }
     return descriptions.get(number, "Нет описания для этого числа.")
 
+def send_email(email, name, number, description):
+    """Отправляет результаты на почту"""
+    sender_email = "veronika1999.v@gmail.com"  # Замените на ваш email
+    sender_password = "40Ve9Ro10"  # Замените на ваш пароль
+
+    subject = "Результат расчёта числа имени"
+    body = f"Имя: {name}\nЧисло имени: {number}\nОписание: {description}"
+
+    msg = MIMEMultipart()
+    msg['From'] = sender_email
+    msg['To'] = email
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain'))
+
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(sender_email, sender_password)
+        server.sendmail(sender_email, email, msg.as_string())
+        server.quit()
+        messagebox.showinfo("Успех", "Результаты отправлены на вашу почту!")
+    except Exception as e:
+        messagebox.showerror("Ошибка", f"Не удалось отправить email: {e}")
+
 def calculate():
     """Функция обработки ввода и вывода результата"""
-    name = entry.get().strip()
+    name = entry_name.get().strip()
+    email = entry_email.get().strip()
+
     if not name:
         messagebox.showerror("Ошибка", "Введите имя")
+        return
+    if not email:
+        messagebox.showerror("Ошибка", "Введите email")
+        return
+    if re.search("[0-9]", name):
+        messagebox.showerror("Ошибка", "Имя не должно содержать цифр")
         return
     
     result = get_name_number(name)
@@ -76,22 +109,35 @@ def calculate():
     description = get_number_description(result)
     label_result.config(text=f"Число имени: {result}\n{description}")
 
+    # Отправляем результаты на почту
+    send_email(email, name, result, description)
+
 # --- Создание GUI ---
 root = tk.Tk()
 root.title("Расчёт числа имени")
-root.geometry("600x700")
-root.configure(bg="#add8e6")  # Голубой фон
+root.geometry("400x400")
+root.configure(bg="#f0f0f0")  # Светло-серый фон
 
-label = tk.Label(root, text="Введите имя:", bg="#add8e6", font=("Arial", 12))
-label.pack(pady=5)
+# Ввод имени
+label_name = tk.Label(root, text="Введите имя:", bg="#f0f0f0", font=("Arial", 12))
+label_name.pack(pady=5)
 
-entry = tk.Entry(root, font=("Arial", 12))
-entry.pack(pady=5)
+entry_name = tk.Entry(root, font=("Arial", 12))
+entry_name.pack(pady=5)
 
-button = tk.Button(root, text="Рассчитать", command=calculate, font=("Arial", 12), bg="#ffffff")
-button.pack(pady=10)
+# Ввод email
+label_email = tk.Label(root, text="Введите ваш email:", bg="#f0f0f0", font=("Arial", 12))
+label_email.pack(pady=5)
 
-label_result = tk.Label(root, text="", bg="#add8e6", font=("Arial", 12), wraplength=300)
+entry_email = tk.Entry(root, font=("Arial", 12))
+entry_email.pack(pady=5)
+
+# Кнопка для расчета
+button_calculate = tk.Button(root, text="Рассчитать и отправить", command=calculate, font=("Arial", 12), bg="#4CAF50", fg="white")
+button_calculate.pack(pady=10)
+
+# Область для вывода результата
+label_result = tk.Label(root, text="", bg="#f0f0f0", font=("Arial", 12), wraplength=300)
 label_result.pack(pady=5)
 
 root.mainloop()

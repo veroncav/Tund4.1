@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>95c4a9ca-91bc-4de6-9b2b-8c5cf13bc311</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>email.py</StartupFile>
+    <StartupFile>euroopa.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -33,13 +33,16 @@
     <Compile Include="Tund8.py" />
     <Compile Include="isikukood.py" />
     <Compile Include="tund7def.py" />
-    <Compile Include="класс1.py" />
+    <Compile Include="euroopa.py" />
     <Compile Include="класс2.py" />
     <Compile Include="модуль1.py" />
+    <Compile Include="модуль2.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ankeet.txt" />
     <Content Include="Kasutajad.txt" />
+    <Content Include="namedes.txt" />
+    <Content Include="numerolo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
